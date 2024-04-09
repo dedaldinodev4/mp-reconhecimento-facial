@@ -66,7 +66,7 @@ function App() {
           <div className="relative flex items-center justify-center aspect-video w-full">
             {/* Substitua pela Webcam */}
             <div className="aspect-video rounded-lg bg-gray-300 w-full">
-              <div className="relative">
+              <div className="relative flex items-center justify-center aspect-video w-full">
                 <video
                   onLoadedMetadata={handleLoadedMetadata}
                   autoPlay
