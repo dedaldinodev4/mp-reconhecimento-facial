@@ -39,7 +39,8 @@ function App() {
       videoEl as HTMLVideoElement,
       new faceapi.TinyFaceDetectorOptions()
     )
-    console.log(detection)
+      .withFaceLandmarks()
+      .withFaceExpressions();
 
     if (detection) {
       const dimensions = {
@@ -50,6 +51,8 @@ function App() {
       faceapi.matchDimensions(canvasEl, dimensions)
       const resizedResults = faceapi.resizeResults(detection, dimensions)
       faceapi.draw.drawDetections(canvasEl, resizedResults)
+      faceapi.draw.drawFaceLandmarks(canvasEl, resizedResults)
+      faceapi.draw.drawFaceExpressions(canvasEl, resizedResults)
     }
 
     setTimeout(handleLoadedMetadata, 1000);
@@ -63,7 +66,7 @@ function App() {
           <div className="relative flex items-center justify-center aspect-video w-full">
             {/* Substitua pela Webcam */}
             <div className="aspect-video rounded-lg bg-gray-300 w-full">
-              <div className="relative flex items-center aspect-video w-full">
+              <div className="relative">
                 <video
                   onLoadedMetadata={handleLoadedMetadata}
                   autoPlay
